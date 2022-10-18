@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
-
+import React, { useState, useContext} from 'react'
+import { AppContext } from '../../App'
 import classes from './styles.module.css'
+import {DebounceInput} from 'react-debounce-input'
 
 export const AsideRight = (props) => {
   const { className, ...otherProps } = props
-    const[title, setTitle]=useState('')
-    console.log(title);
+  
+  const { search,setSearch  } = useContext(AppContext)
+  
   return (
     <div
       className={`${classes.root}${className ? ` ${className}` : ''}`}
@@ -15,11 +17,15 @@ export const AsideRight = (props) => {
         <h1>Find Your Book</h1>
       </div>
       <div className={classes.input}>
-        <input
+      <DebounceInput
+          minLength={2}
+          debounceTimeout={1000}
           type='search'
           placeholder='Enter Your Book Name'
-          value={title}
-          onChange={e=>setTitle(e.target.value)}
+          value={search}
+          onChange={e=>{
+            setSearch(e.target.value)
+          }}
         />
       </div>
       <div className={classes.img}></div>

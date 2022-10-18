@@ -1,1 +1,41 @@
-.root {}
+.root {
+  width: 100%;
+  max-width: 900px;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-auto-columns: auto;
+  gap: 1rem;
+  place-items: center;
+  margin: 1rem auto;
+  padding: 1rem;
+}
+.card {
+  width: 210px;
+  height: 340px;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.5rem;
+  background-color: #d4b38c;
+  cursor: pointer;
+}
+.card img {
+  height: 270px;
+  width: 190px;
+  object-fit: cover;
+  border-radius: 0.8rem;
+}
+.card p {
+  font-size: 0.8rem;
+}
+.title {
+  overflow: hidden;
+}
+.authors {
+  width: 190px;
+  background-color: #7d4f2d;
+  text-align: center;
+  color: bisque;
+}

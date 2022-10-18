@@ -1,38 +1,42 @@
-import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
+import { useFetch } from './api/useFetch'
 import Container from './components/Container/Container'
 import AsideLeft from './components/AsideLeft/AsideLeft'
 import AsideRight from './components/AsideRight/AsideRight'
+import { Loading } from './components/Loading/Loading'
+import { FullPageLayout } from './components/FullPageLayout/FullPageLayout'
+import { Section } from './components/Section/Section'
 import './App.css'
-const queryClient = new QueryClient()
+import { useState, createContext, useEffect } from "react";
+
+export const AppContext = createContext()
 function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <LoadBooks />
-    </QueryClientProvider>
-  )
-}
+  const[search,setSearch]=useState('spin')
 
-function LoadBooks() {
-  const { isLoading, error, data, refetch } = useQuery(['repoData'], () =>
-    fetch('https://www.googleapis.com/books/v1/volumes?q=pan%20samochodzik').then(res =>
-      res.json()
-    )
-  )
+  const url =`https://www.googleapis.com/books/v1/volumes?q=${search}`
+   const { data, pending, error } = useFetch(url)
+  
 
-  if (isLoading) return 'Loading...'
-
-  if (error) return 'An error has occurred: ' + error.message
-  console.log(data);
+   data?console.log(data):null
+  
 
   return (
     <div className="App">
+         
+        {pending ? (
+          <FullPageLayout>
+            <Loading />
+          </FullPageLayout>
+        ) : null}
+       <AppContext.Provider value={{search,setSearch  }}>
     <Container>
      <AsideLeft/>
      <AsideRight/>
     </Container>
-     <button
-     onClick={refetch}
-     >refetch</button>
+    <Section
+    data={data}
+    error={error}
+    />
+     </AppContext.Provider>
     </div>
   )
 }
