@@ -3,8 +3,10 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage'
 import classes from './styles.module.css'
 
 export const Section = (props) => {
-  const { className, error, data, ...otherProps } = props
+  const { className, error, data,onClick, ...otherProps } = props
   
+
+
   return (
     <div
       className={`${classes.root}${className ? ` ${className}` : ''}`}
@@ -12,17 +14,18 @@ export const Section = (props) => {
     >
       {error ? <ErrorMessage>{error}</ErrorMessage> : null}
       {data &&
-        data.items.map((el, i) => 
-        el.volumeInfo.imageLinks?
-          (
-            
+        data.items.map((el, i) =>
+          el.volumeInfo.imageLinks ? (
             <div
               key={el.id}
               className={classes.card}
+             
             >
               <img
                 src={el.volumeInfo.imageLinks.smallThumbnail}
-                alt=''
+                alt={'image'+el.volumeInfo.title}
+                onClick={onClick}
+                id={el.id}
               />
               <div className={classes.title}>
                 <p>{el.volumeInfo.title}</p>
@@ -35,7 +38,7 @@ export const Section = (props) => {
                 </p>
               </div>
             </div>
-          ):null
+          ) : null
         )}
     </div>
   )

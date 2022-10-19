@@ -19,13 +19,14 @@
   align-items: center;
   border-radius: 0.5rem;
   background-color: #d4b38c;
-  cursor: pointer;
+  
 }
 .card img {
   height: 270px;
   width: 190px;
   object-fit: cover;
   border-radius: 0.8rem;
+  cursor: pointer;
 }
 .card p {
   font-size: 0.8rem;
