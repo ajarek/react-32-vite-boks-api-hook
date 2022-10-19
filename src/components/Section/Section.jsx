@@ -12,16 +12,16 @@ export const Section = (props) => {
     >
       {error ? <ErrorMessage>{error}</ErrorMessage> : null}
       {data &&
-        data.items.map((el, i) => {
-         
-          return (
+        data.items.map((el, i) => 
+        el.volumeInfo.imageLinks?
+          (
             
             <div
               key={el.id}
               className={classes.card}
             >
               <img
-                src={el.volumeInfo.imageLinks?el.volumeInfo.imageLinks.smallThumbnail:'src/assets/avatar-book.jpg'}
+                src={el.volumeInfo.imageLinks.smallThumbnail}
                 alt=''
               />
               <div className={classes.title}>
@@ -35,8 +35,8 @@ export const Section = (props) => {
                 </p>
               </div>
             </div>
-          )
-        })}
+          ):null
+        )}
     </div>
   )
 }
