@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react'
+import React, { useContext, useEffect} from 'react'
 import { AppContext } from '../../App'
 import classes from './styles.module.css'
 import {DebounceInput} from 'react-debounce-input'
@@ -6,8 +6,7 @@ import {DebounceInput} from 'react-debounce-input'
 export const AsideRight = (props) => {
   const { className, ...otherProps } = props
   
-  const { search,setSearch  } = useContext(AppContext)
-  
+  const { search,setSearch  } = useContext(AppContext) 
   return (
     <div
       className={`${classes.root}${className ? ` ${className}` : ''}`}

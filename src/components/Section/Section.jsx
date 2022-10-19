@@ -4,7 +4,7 @@ import classes from './styles.module.css'
 
 export const Section = (props) => {
   const { className, error, data, ...otherProps } = props
-
+  
   return (
     <div
       className={`${classes.root}${className ? ` ${className}` : ''}`}
@@ -13,7 +13,9 @@ export const Section = (props) => {
       {error ? <ErrorMessage>{error}</ErrorMessage> : null}
       {data &&
         data.items.map((el, i) => {
+         
           return (
+            
             <div
               key={el.id}
               className={classes.card}

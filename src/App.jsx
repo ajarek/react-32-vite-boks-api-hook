@@ -10,11 +10,17 @@ import { useState, createContext, useEffect } from "react";
 
 export const AppContext = createContext()
 function App() {
-  const[search,setSearch]=useState('spin')
+ 
+  const[search,setSearch]=useState(null)
+  const[address, setAddress] =useState('')
+  const url =`https://www.googleapis.com/books/v1/volumes?q=${address}&maxResults=12`
+  const { data, pending, error } = useFetch(url)
+  useEffect(()=>{
 
-  const url =`https://www.googleapis.com/books/v1/volumes?q=${search}`
-   const { data, pending, error } = useFetch(url)
-  
+   search? setAddress(search):setAddress('react js')
+  },[search])
+   
+
 
    data?console.log(data):null
   
@@ -27,7 +33,7 @@ function App() {
             <Loading />
           </FullPageLayout>
         ) : null}
-       <AppContext.Provider value={{search,setSearch  }}>
+       <AppContext.Provider value={{search,setSearch,  }}>
     <Container>
      <AsideLeft/>
      <AsideRight/>
