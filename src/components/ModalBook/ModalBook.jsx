@@ -26,7 +26,12 @@ export const ModalBook = (props) => {
                 src={el.volumeInfo.imageLinks.thumbnail}
                 alt=''
               />
-              <p>author: {el.volumeInfo.authors[0]}</p>
+              <p>
+                author:{' '}
+                {el.volumeInfo.authors
+                  ? el.volumeInfo.authors[0]
+                  : el.volumeInfo.title}
+              </p>
               <p>country: {el.accessInfo.country}</p>
               <p>language: {el.volumeInfo.language}</p>
               <p>publishedDate: {el.volumeInfo.publishedDate}</p>
