@@ -5,3 +5,11 @@
   grid-template-columns: repeat(2,1fr);
   border-bottom:3px solid beige ;
 }
+@media (max-width:600px) {
+  .root{
+    grid-template-columns: repeat(1,1fr);
+    place-items: center;
+    height: 100%;
+    text-align: center;
+  }
+}
